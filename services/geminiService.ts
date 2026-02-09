@@ -16,9 +16,25 @@ export const generateFitnessAdvice = async (userPrompt: string): Promise<string>
       },
     });
 
-    return response.text || "I'm sorry, I couldn't generate advice right now. Please try again.";
-  } catch (error) {
+    if (!response.text) {
+      throw new Error("No response generated");
+    }
+
+    return response.text;
+  } catch (error: any) {
     console.error("Error generating fitness advice:", error);
-    return "I'm having trouble connecting to the fitness database. Please check your connection and try again.";
+    
+    // Improved error handling
+    const errorMessage = error.message || '';
+    
+    if (errorMessage.includes('429') || errorMessage.toLowerCase().includes('quota')) {
+      return "I'm currently receiving too many requests. Please try again in a minute.";
+    }
+    
+    if (errorMessage.includes('API key') || errorMessage.includes('403')) {
+      return "There seems to be an issue with the AI service configuration. Please contact support.";
+    }
+
+    return "I'm having trouble connecting to the fitness database right now. Please check your internet connection and try again.";
   }
 };
