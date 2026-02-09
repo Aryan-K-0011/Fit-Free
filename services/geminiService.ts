@@ -1,11 +1,23 @@
 import { GoogleGenAI } from "@google/genai";
 
-// Initialize the client with the API key from the environment
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+let ai: GoogleGenAI | null = null;
+
+const getAIClient = () => {
+  if (!ai) {
+    const apiKey = process.env.API_KEY;
+    if (!apiKey) {
+      console.warn("API_KEY is missing in environment variables.");
+    }
+    // Initialize anyway; the library might handle missing keys gracefully or throw later
+    ai = new GoogleGenAI({ apiKey: apiKey || '' });
+  }
+  return ai;
+};
 
 export const generateFitnessAdvice = async (userPrompt: string): Promise<string> => {
   try {
-    const response = await ai.models.generateContent({
+    const client = getAIClient();
+    const response = await client.models.generateContent({
       model: 'gemini-3-flash-preview',
       contents: userPrompt,
       config: {

@@ -2,24 +2,39 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 
-// Global error listener to catch non-React errors (like script loading issues)
+// Global error listener
 window.addEventListener('error', (event) => {
-  const root = document.getElementById('root');
-  if (root) {
-    // Only overwrite if the app hasn't mounted significantly
-    if (root.innerHTML === '') {
-       document.body.innerHTML = `
-        <div style="background-color: #0f172a; color: #ef4444; height: 100vh; padding: 20px; font-family: monospace; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-          <h1 style="font-size: 2rem; margin-bottom: 1rem;">Startup Error</h1>
-          <p style="color: #cbd5e1; margin-bottom: 2rem;">The application failed to start.</p>
-          <pre style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 8px; max-width: 800px; overflow: auto; border: 1px solid #334155;">${event.message}</pre>
-        </div>
-      `;
-    }
-  }
+  showError('Runtime Error', event.message);
 });
 
-// Error Boundary Component to catch React rendering errors
+window.addEventListener('unhandledrejection', (event) => {
+  showError('Unhandled Promise Rejection', event.reason?.toString() || 'Unknown error');
+});
+
+// Helper to show error on screen
+function showError(title: string, message: string) {
+  const root = document.getElementById('root');
+  if (root && root.innerHTML === '') {
+     document.body.innerHTML = `
+      <div style="background-color: #0f172a; color: #ef4444; height: 100vh; padding: 20px; font-family: monospace; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+        <h1 style="font-size: 2rem; margin-bottom: 1rem;">${title}</h1>
+        <p style="color: #cbd5e1; margin-bottom: 2rem;">The application failed to start.</p>
+        <pre style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 8px; max-width: 800px; overflow: auto; border: 1px solid #334155; white-space: pre-wrap;">${message}</pre>
+        <button onclick="window.location.reload()" style="margin-top: 20px; padding: 10px 20px; background: #ea580c; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">Reload</button>
+      </div>
+    `;
+  }
+}
+
+// Failsafe: If app doesn't mount within 3 seconds, show error
+setTimeout(() => {
+  const root = document.getElementById('root');
+  if (root && root.innerHTML === '') {
+    showError('Startup Timeout', 'The application took too long to render. This may be due to a silent crash or network issue.');
+  }
+}, 3000);
+
+// Error Boundary Component
 class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean; error: Error | null }> {
   constructor(props: { children: React.ReactNode }) {
     super(props);
