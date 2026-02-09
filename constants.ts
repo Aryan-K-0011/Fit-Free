@@ -8,7 +8,7 @@ export const WORKOUTS: Workout[] = [
     duration: 10,
     difficulty: 'Beginner',
     category: 'Cardio',
-    imageUrl: 'https://picsum.photos/id/1025/800/600',
+    imageUrl: 'https://i.scdn.co/image/ab67616d0000b2737a57a9b298c9980f07cd73af',
     exercises: [
       { name: 'Jumping Jacks', duration: '60s', description: 'Standard jumping jacks to get heart rate up.' },
       { name: 'High Knees', duration: '45s', description: 'Run in place bringing knees high.' },
@@ -24,7 +24,7 @@ export const WORKOUTS: Workout[] = [
     duration: 15,
     difficulty: 'Intermediate',
     category: 'Strength',
-    imageUrl: 'https://picsum.photos/id/1020/800/600',
+    imageUrl: 'https://fithero.app/static/01446ce5b37816640ab478e68fabe487/dd919/core-workout.jpg',
     exercises: [
       { name: 'Plank', duration: '60s', description: 'Hold a solid plank position.' },
       { name: 'Bicycle Crunches', reps: '20 per side', description: 'Elbow to opposite knee.' },
@@ -39,7 +39,7 @@ export const WORKOUTS: Workout[] = [
     duration: 25,
     difficulty: 'Advanced',
     category: 'HIIT',
-    imageUrl: 'https://picsum.photos/id/1084/800/600',
+    imageUrl: 'https://s3assets.skimble.com/assets/3022120/maxresdefault_full.jpg',
     exercises: [
       { name: 'Burpees', reps: '15', description: 'Full body explosive movement.' },
       { name: 'Push-ups', reps: '20', description: 'Standard or knee push-ups.' },
@@ -55,7 +55,7 @@ export const WORKOUTS: Workout[] = [
     duration: 20,
     difficulty: 'Beginner',
     category: 'Yoga',
-    imageUrl: 'https://picsum.photos/id/106/800/600',
+    imageUrl: 'https://images.squarespace-cdn.com/content/v1/57b5ef68c534a5cc06edc769/b624caaa-e746-4d6a-8e67-cbaabdfc5319/bedtime-yoga-happy-baby-pose.jpg',
     exercises: [
       { name: 'Child\'s Pose', duration: '2m', description: 'Resting pose tailored for relaxation.' },
       { name: 'Cat-Cow', duration: '1m', description: 'Spinal flow.' },
@@ -70,7 +70,7 @@ export const WORKOUTS: Workout[] = [
     duration: 5,
     difficulty: 'Beginner',
     category: 'Flexibility',
-    imageUrl: 'https://picsum.photos/id/1/800/600',
+    imageUrl: 'https://canterburyhealthhub.com.au/uploads/blog/7-minute-mobility-routine-to-get-you-moving-on-your-lunch-break/_1200x630_crop_center-center_82_none/7-minute-mobility-routine-BLOG.jpg?mtime=1605826694',
     exercises: [
       { name: 'Neck Rolls', duration: '30s', description: 'Gentle neck rotation.' },
       { name: 'Shoulder Shrugs', duration: '30s', description: 'Release shoulder tension.' },
@@ -85,7 +85,7 @@ export const WORKOUTS: Workout[] = [
     duration: 20,
     difficulty: 'Intermediate',
     category: 'Strength',
-    imageUrl: 'https://picsum.photos/id/338/800/600',
+    imageUrl: 'https://www.shape.com/thmb/e1oEJ2CjfrkhHGgABpnM3-42p7U=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/SQ-single-leg-deadlift-GettyImages-860707524-1-057da57891fd4ed8a17ca7272d023ff4.jpg',
     exercises: [
       { name: 'Glute Bridges', reps: '20', description: 'Squeeze glutes at the top.' },
       { name: 'Reverse Lunges', reps: '15 per leg', description: 'Step back and lower down.' },
